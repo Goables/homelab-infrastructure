@@ -1,0 +1,1 @@
+I ordered 2x 16GB DDR4 UDIMM 288 pin 2666 speed RAM sticks as an upgrade to my homelab machine from the original 16 GB it came with, as 2x 8GB sticks.  I plan to set up a few new machines soon.  I will be testing ansible with multiple machines, and looking into setting up a web server machine for use in my future TeamDynamix-style homemade ticketing system I wish to design.
