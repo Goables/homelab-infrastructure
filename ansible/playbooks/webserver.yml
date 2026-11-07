@@ -3,6 +3,10 @@
   hosts: webservers
   become: true
 
+  vars:
+    server_name: "Test Homelab Web Server"
+    server_message: "Configuration management is working."
+
   tasks:
     - name: Update apt package cache
       ansible.builtin.apt:
@@ -15,21 +19,22 @@
         state: present
 
     - name: Deploy homelab webpage
-      ansible.builtin.copy:
+      ansible.builtin.template:
+        src: ../templates/index.html.j2
         dest: /var/www/html/index.html
         owner: root
         group: root
         mode: "0644"
-        content: |
-          <!DOCTYPE>
-            <html>
-             <head>
-                <title>Homelab Web Server</title>
-              </head>
-            </html>
+      notify: Restart nginx
 
     - name: Ensure nginx is running
       ansible.builtin.service:
         name: nginx
         state: started
         enabled: true
+
+  handlers:
+    - name: Restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
