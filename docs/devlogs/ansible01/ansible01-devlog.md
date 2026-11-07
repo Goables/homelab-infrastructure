@@ -10,3 +10,5 @@ I deployed nginx to web01 device, and verified that the html document was access
 Learning how to use variables in playbooks and package deployments.  Also learning about handlers and templates.  I'm interested to see how you can use dynamic variables for use in multiple machines from one deployment.  For example, having each machine display a webpage through nginx saying "I am machine 02" for machine 02, 03 for machine 03, etc, all with one deployment.  I know it's possible, but that is my current curiosity regarding this.
 
 I deployed the package, but it didn't show up in the hosted webpage.  After looking back at the playbook file, I realized that out of habit I accidentally set the destination for the html file to "index.js" instead of "index.html."  After fixing, the webpage displayed correctly.
+
+Created web02, another Ubuntu LTS server blank slate, and applied the playbook to it, by adding it to the webserver inventory file for Ansible to read.  I changed the playbook file to deploy with {{ inventory_hostname }}, which then showed the name of each machine.
