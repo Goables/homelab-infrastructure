@@ -12,3 +12,5 @@ Learning how to use variables in playbooks and package deployments.  Also learni
 I deployed the package, but it didn't show up in the hosted webpage.  After looking back at the playbook file, I realized that out of habit I accidentally set the destination for the html file to "index.js" instead of "index.html."  After fixing, the webpage displayed correctly.
 
 Created web02, another Ubuntu LTS server blank slate, and applied the playbook to it, by adding it to the webserver inventory file for Ansible to read.  I changed the playbook file to deploy with {{ inventory_hostname }}, which then showed the name of each machine.
+
+Created my own playbook to shut down webserver machines through Ansible.  Tested and verified it works.
