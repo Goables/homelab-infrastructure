@@ -1,0 +1,33 @@
+---
+- name: Update apt package cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: Deploy nginx site configuration
+  ansible.builtin.template:
+    src: default.j2
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload nginx
+
+- name: Deploy web page
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: "{{ web_root }}/index.html"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Ensure nginx is up and running
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true

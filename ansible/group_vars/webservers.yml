@@ -1,0 +1,3 @@
+---
+server_message: "This server is being automatically managed by Ansible."
+web_root: "/var/www/html"

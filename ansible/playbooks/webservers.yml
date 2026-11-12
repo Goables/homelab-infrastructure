@@ -1,0 +1,7 @@
+---
+- name: Configure Homelab Web Servers
+  hosts: webservers
+  become: true
+
+  roles:
+    - nginx
